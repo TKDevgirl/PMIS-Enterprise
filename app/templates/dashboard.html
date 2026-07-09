@@ -6,25 +6,67 @@
 </head>
 <body>
   <aside class="sidebar">
-    <div class="brand">PMIS</div>
-    <div class="sub">Enterprise V2.1</div>
-
+  <div class="brand-box">
+  
+      <img src="/static/img/bytebridge-logo.png" class="logo">
+  
+      <div>
+          <div class="brand">ByteBridge PMIS</div>
+          <div class="sub">Enterprise V2.2</div>
+      </div>
+  
+  </div>
+  
+  <div class="project-box">
+  
+      <label>Project</label>
+  
+      <select id="projectSelect" onchange="changeProject(this.value)">
+          <option value="BKK1">TOPAZ BKK1</option>
+          <option value="BKK2">TOPAZ BKK2</option>
+      </select>
+  
+  </div>
     <a class="active" href="/dashboard">📊 Dashboard</a>
     <a href="/web/layout/GF">🗺 Layout Viewer</a>
     <a href="/docs">⚙ API Docs</a>
 
-    <div class="user">Pavinee Suwanta<br><span>ICT Project Engineer</span></div>
+    
   </aside>
 
   <main class="main">
     <section class="hero">
       <div>
-        <h1>Welcome Back, Pavinee 👋</h1>
-        <p>Real-time PMIS status for TOPAZ BKK1</p>
+        <h1>TOPAZ Data Center</h1>
+        <p>ByteBridge PMIS · ICT Project Management Information System</p>
+            
+        <div class="hero-meta">
+        
+            <span>Project :
+                <b id="projectName">TOPAZ BKK1</b>
+            </span>
+        
+            <span>Status :
+                <b class="online">Online</b>
+            </span>
+        
+            <span>Environment :
+                Production
+            </span>
+        
+        </div>
       </div>
       <div class="hero-actions">
-        <a href="/web/layout/GF">Open Layout</a>
-        <a href="/docs">API Docs</a>
+      
+          <a id="openLayoutBtn"
+             href="/web/layout/GF?project=BKK1">
+             Open Layout
+          </a>
+      
+          <a href="/docs">
+             API Docs
+          </a>
+      
       </div>
     </section>
 
@@ -36,26 +78,72 @@
     </section>
 
     <section class="grid">
-      <div class="panel health">
-        <h2>Project Health</h2>
-        <div class="score">92<span>/100</span></div>
-        <p class="green">Excellent — API, Excel and Layout are online</p>
-        <div class="bar"><div style="width:92%"></div></div>
-      </div>
 
-      <div class="panel">
-        <h2>Alert Center</h2>
-        <div class="alert ok">✓ API Running</div>
-        <div class="alert ok">✓ Layout Viewer Ready</div>
-        <div class="alert ok">✓ Excel Database Connected</div>
-      </div>
+
+    <div class="panel">
+    
+    <h2>Project Information</h2>
+    
+    <table class="info-table">
+    
+    <tr>
+    
+    <td>Project</td>
+    
+    <td id="infoProject">TOPAZ BKK1</td>
+    
+    </tr>
+    
+    <tr>
+      <td>Client</td>
+      <td id="clientName">Confidential</td>
+    </tr>
+    
+    <tr>
+    
+    <td>Main Contractor</td>
+    
+    <td>TTI</td>
+    
+    </tr>
+    
+    <tr>
+    
+    <td>ICT Contractor</td>
+    
+    <td>ByteBridge Technology</td>
+    
+    </tr>
+    
+    <tr>
+    
+    <td>Environment</td>
+    
+    <td>Production</td>
+    
+    </tr>
+    
+    </table>
+    
+    </div>
 
       <div class="panel">
         <h2>Quick Access</h2>
         <div class="quick">
-          <a href="/web/layout/GF">GF Layout</a>
-          <a href="/web/layout/FF">FF Layout</a>
-          <a href="/web/layout/LF">LF Layout</a>
+          <a data-layout="GF"
+             href="/web/layout/GF?project=BKK1">
+             GF Layout
+          </a>
+          
+          <a data-layout="FF"
+             href="/web/layout/FF?project=BKK1">
+             FF Layout
+          </a>
+          
+          <a data-layout="LF"
+             href="/web/layout/LF?project=BKK1">
+             LF Layout
+          </a>
         </div>
       </div>
 
@@ -70,5 +158,26 @@
       </div>
     </section>
   </main>
+<script>
+function changeProject(project) {
+
+    // Hero
+    document.getElementById("projectName").innerText = "TOPAZ " + project;
+
+    // Project Information
+    document.getElementById("infoProject").innerText = "TOPAZ " + project;
+
+    // Hero Button
+    document.getElementById("openLayoutBtn").href =
+        "/web/layout/GF?project=" + project;
+
+    // Quick Access
+    document.querySelectorAll("[data-layout]").forEach(link => {
+        const floor = link.dataset.layout;
+        link.href = "/web/layout/" + floor + "?project=" + project;
+    });
+
+}
+</script>
 </body>
 </html>
