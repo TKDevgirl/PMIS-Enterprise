@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PMIS Enterprise Dashboard</title>
+  <link rel="stylesheet" href="/static/css/dashboard.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <h2>PMIS</h2>
+    <p>Enterprise V2</p>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/web/layout/GF">Layout Viewer</a>
+    <a href="/docs">API Docs</a>
+  </aside>
+
+  <main class="main">
+    <h1>PMIS Enterprise Dashboard</h1>
+    <p class="subtitle">Project: TOPAZ BKK1</p>
+
+    <div class="cards">
+      <div class="card"><h3>Rooms</h3><p>{{ summary.total_rooms }}</p></div>
+      <div class="card"><h3>Racks</h3><p>{{ summary.total_racks }}</p></div>
+      <div class="card"><h3>Equipment</h3><p>{{ summary.total_equipment }}</p></div>
+      <div class="card"><h3>Floors</h3><p>{{ summary.total_floors }}</p></div>
+    </div>
+
+    <section class="panel">
+      <h2>Quick Access</h2>
+      <a class="btn" href="/web/layout/GF">Open GF Layout</a>
+      <a class="btn" href="/web/layout/FF">Open FF Layout</a>
+      <a class="btn" href="/web/layout/LF">Open LF Layout</a>
+    </section>
+  </main>
+</body>
+</html>
