@@ -18,3 +18,20 @@ def web_layout_floor(floor_id: str, request: Request):
             "rooms": rooms
         }
     )
+
+@router.get("/dashboard")
+def dashboard_page(request: Request):
+    summary = {
+        "total_rooms": 21,
+        "total_racks": 72,
+        "total_equipment": 128,
+        "total_floors": 3
+    }
+
+    return templates.TemplateResponse(
+        "dashboard.html",
+        {
+            "request": request,
+            "summary": summary
+        }
+    )
