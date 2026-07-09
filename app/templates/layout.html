@@ -86,6 +86,73 @@
             min-height: 620px;
             box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
         }
+        .property h2{
+            margin-top:0;
+            margin-bottom:18px;
+            font-size:24px;
+        }
+        
+        .rack-summary{
+            background:linear-gradient(135deg,#0f172a,#2563eb);
+            color:#fff;
+            border-radius:16px;
+            padding:18px;
+            margin-bottom:18px;
+        }
+        
+        .rack-summary h3{
+            margin:0;
+            font-size:18px;
+        }
+        
+        .rack-summary p{
+            margin:6px 0 0;
+            color:#dbeafe;
+        }
+        
+        .property-card{
+            background:#fff;
+            border:1px solid #e5e7eb;
+            border-radius:14px;
+            padding:16px;
+            margin-bottom:16px;
+        }
+        
+        .property-card h4{
+            margin:0 0 12px;
+            color:#2563eb;
+            font-size:15px;
+        }
+        
+        .row{
+            display:flex;
+            justify-content:space-between;
+            padding:8px 0;
+            border-bottom:1px solid #eef2f7;
+        }
+        
+        .row:last-child{
+            border-bottom:none;
+        }
+        
+        .label{
+            color:#64748b;
+        }
+        
+        .value{
+            font-weight:600;
+        }
+        
+        .status{
+            display:inline-block;
+            margin-top:10px;
+            padding:5px 12px;
+            border-radius:20px;
+            background:#dcfce7;
+            color:#166534;
+            font-size:12px;
+            font-weight:bold;
+        }
         /* Smooth animation */
         #rackDetail{
             transition: opacity .25s ease;
@@ -857,13 +924,85 @@ async function loadEquipment(rackId, element) {
     }
     const rackSizeText = String(rack.Rack_Size || "47U");
     const rackSize = parseInt(rackSizeText) || 47;
-    const box = document.getElementById("rackDetail");
-     box.innerHTML = `<div class="hint">Loading rack...</div>`;
+    
+    document.getElementById("rackId").innerText = rackId;
+    document.getElementById("rackName").innerText = rack.Room_Name || "";
+    
+    document.getElementById("rackType").innerText =
+        rack.Rack_Type || "Network Rack";
+    
+    document.getElementById("rackFloor").innerText =
+        rack.Floor_ID || "{{ floor_id }}";
+    
+    document.getElementById("rackRoom").innerText =
+        rack.Room_ID || "-";
+    
+    document.getElementById("rackSize").innerText =
+        rackSize + "U";
+    
+    document.getElementById("installStatus").innerText =
+        "Ready for Installation";
+    
+    const status = document.getElementById("rackStatus");
+    status.innerText = "Ready";
+    status.style.background = "#dbeafe";
+    status.style.color = "#1d4ed8";
+    
+    document.getElementById("installDate").innerText =
+        "01-OCT-2026";
+    
+    document.getElementById("inspectionStatus").innerText =
+        "Pending";
+    
+    document.getElementById("manufacturer").innerText =
+        "Siemon";
+    
+    document.getElementById("partNumber").innerText =
+        "LL-XXX-XXU";
+    
+    document.getElementById("serialNumber").innerText =
+        "SN-" + rackId;
+    
+    document.getElementById("drawingNo").innerText =
+        "DWG001";
+    
+    document.getElementById("totalU").innerText =
+        rackSize + "U";
+    // const box = document.getElementById("rackDetail");
+    //  box.innerHTML = `<div class="hint">Loading rack...</div>`;
 
+    // if (!Array.isArray(data)) {
+    //     box.innerHTML = `<b>${rackId}</b><br><br>No equipment found`;
+    //     return;
+    // }
     if (!Array.isArray(data)) {
-        box.innerHTML = `<b>${rackId}</b><br><br>No equipment found`;
-        return;
+
+        document.getElementById("equipmentCount").innerText = "0";
+        document.getElementById("usedU").innerText = "0U";
+        document.getElementById("availableU").innerText = rackSize + "U";
+
+    return;
     }
+    let usedU = 0;
+
+    data.forEach(item => {
+    
+        const h = parseInt(item.Height_U);
+    
+        if (!isNaN(h)) {
+            usedU += h;
+        }
+    
+    });
+    
+    document.getElementById("usedU").innerText =
+        usedU + "U";
+    
+    document.getElementById("availableU").innerText =
+        (rackSize - usedU) + "U";
+    
+    document.getElementById("equipmentCount").innerText =
+        data.length;
 function getEquipmentClass(name) {
     name = name.toUpperCase();
 
@@ -1184,13 +1323,13 @@ function searchRack() {
 
 // box.innerHTML = html;
 
-    box.style.opacity = 0;
+//     box.style.opacity = 0;
 
-    setTimeout(() => {
-    box.innerHTML = html;
-    box.style.opacity = 1;
-}, 120);
-}
+//     setTimeout(() => {
+//     box.innerHTML = html;
+//     box.style.opacity = 1;
+// }, 120);
+//}
 </script>
 
 </body>
