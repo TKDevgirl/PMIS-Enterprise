@@ -79,7 +79,7 @@
 
     <section class="grid">
 
-    <div class="panel layout-preview">
+    <!-- <div class="panel layout-preview">
     
         <div class="panel-header">
             <h2>🗺 Live Layout Preview</h2>
@@ -90,8 +90,45 @@
                Open Full Layout →
             </a>
     
-        </div>
-    
+        </div> -->
+    <div class="panel rack-summary-panel">
+  <div class="panel-header-clean">
+    <h2>Rack Summary by Floor</h2>
+    <p>TOPAZ BKK1 · Rack type / size / quantity by floor</p>
+  </div>
+
+  <div class="floor-summary-grid">
+
+    <div class="floor-card">
+      <div class="floor-title">Ground Floor <span>GF</span></div>
+      <table class="summary-table">
+        <tr><th>Type</th><th>Size</th><th>Qty</th><th>Room</th></tr>
+        <tr><td>Stand</td><td>47U</td><td>12</td><td>NIR, NER</td></tr>
+        <tr><td>Stand</td><td>24U</td><td>1</td><td>Office Zone</td></tr>
+        <tr><td>ODF</td><td>47U</td><td>32</td><td>FER</td></tr>
+      </table>
+    </div>
+
+    <div class="floor-card">
+      <div class="floor-title">First Floor <span>FF</span></div>
+      <table class="summary-table">
+        <tr><th>Type</th><th>Size</th><th>Qty</th><th>Room</th></tr>
+        <tr><td>Stand</td><td>47U</td><td>8</td><td>NER</td></tr>
+        <tr><td>Wall Mounted</td><td>12U</td><td>1</td><td>Office Zone</td></tr>
+        <tr><td>ODF</td><td>47U</td><td>12</td><td>FER</td></tr>
+      </table>
+    </div>
+
+    <div class="floor-card">
+      <div class="floor-title">Lower Floor <span>LF</span></div>
+      <table class="summary-table">
+        <tr><th>Type</th><th>Size</th><th>Qty</th><th>Room</th></tr>
+        <tr><td>Stand</td><td>47U</td><td>6</td><td>NER</td></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
         <iframe
             id="layoutFrame"
             src="/web/layout/GF?project=BKK1"
