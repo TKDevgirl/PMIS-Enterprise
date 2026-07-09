@@ -245,3 +245,56 @@ body {
   .kpis, .grid { grid-template-columns: 1fr; }
   .hero { flex-direction: column; align-items: flex-start; gap: 20px; }
 }
+/* ---------- Layout Preview ---------- */
+
+.layout-preview{
+
+    grid-column: span 2;
+
+    padding:0;
+
+    overflow:hidden;
+
+}
+
+.panel-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 26px;
+
+    border-bottom:1px solid #edf2f7;
+
+}
+
+.panel-header h2{
+
+    margin:0;
+
+    font-size:24px;
+
+}
+
+.panel-header a{
+
+    text-decoration:none;
+
+    color:#2563eb;
+
+    font-weight:700;
+
+}
+
+#layoutFrame{
+
+    width:100%;
+
+    height:650px;
+
+    border:none;
+
+}
