@@ -794,7 +794,7 @@
         <h1>PMIS Enterprise V1</h1>
         <p>Click rack to view detail and equipment.</p>
 <div class="layout-wrapper">
-
+ <div class="layout-left">
     <div class="drawing">
         <h3 style="text-align:center;">Drawing: DWG001</h3>
 
@@ -856,6 +856,46 @@
 
         </div>
         {% endfor %}
+
+            </div>
+
+            <div class="rack-info-bottom">
+        
+              <div class="property-card">
+                <h3>General Information</h3>
+                <div class="row"><span>Rack Type</span><b id="rackType">-</b></div>
+                <div class="row"><span>Floor</span><b id="rackFloor">-</b></div>
+                <div class="row"><span>Room</span><b id="rackRoom">-</b></div>
+                <div class="row"><span>Rack Size</span><b id="rackSize">-</b></div>
+              </div>
+        
+              <div class="property-card">
+                <h3>Installation</h3>
+                <div class="row"><span>Status</span><b id="installStatus">Planned</b></div>
+                <div class="row"><span>Installation Date</span><b id="installDate">TBC</b></div>
+                <div class="row"><span>Installed By</span><b>ByteBridge</b></div>
+                <div class="row"><span>Inspection</span><b id="inspectionStatus">Pending</b></div>
+              </div>
+        
+              <div class="property-card">
+                <h3>Asset Information</h3>
+                <div class="row"><span>Manufacturer</span><b id="manufacturer">TBC</b></div>
+                <div class="row"><span>Part Number</span><b id="partNumber">TBC</b></div>
+                <div class="row"><span>Serial Number</span><b id="serialNumber">TBC</b></div>
+                <div class="row"><span>Drawing</span><b id="drawingNo">DWG001</b></div>
+              </div>
+        
+              <div class="property-card">
+                <h3>Capacity</h3>
+                <div class="row"><span>Total U</span><b id="totalU">47U</b></div>
+                <div class="row"><span>Used U</span><b id="usedU">-</b></div>
+                <div class="row"><span>Available U</span><b id="availableU">-</b></div>
+                <div class="row"><span>Equipment Items</span><b id="equipmentCount">-</b></div>
+              </div>
+        
+            </div>
+        
+          </div>
     </div>
 
 <div class="property">
@@ -868,77 +908,14 @@
     <span id="rackStatus" class="status planned">Planned</span>
   </div>
 
-          <div class="property-card">
-            <h3>General Information</h3>
-            <div class="row"><span>Rack Type</span><b id="rackType">-</b></div>
-            <div class="row"><span>Floor</span><b id="rackFloor">-</b></div>
-            <div class="row"><span>Room</span><b id="rackRoom">-</b></div>
-            <div class="row"><span>Rack Size</span><b id="rackSize">-</b></div>
-          </div>
-        
-          <div class="property-card">
-            <h3>Installation</h3>
-            <div class="row"><span>Status</span><b id="installStatus">Planned</b></div>
-            <div class="row"><span>Installation Date</span><b id="installDate">TBC</b></div>
-            <div class="row"><span>Installed By</span><b>ByteBridge</b></div>
-            <div class="row"><span>Inspection</span><b id="inspectionStatus">Pending</b></div>
-          </div>
-        
-          <div class="property-card">
-            <h3>Asset Information</h3>
-            <div class="row"><span>Manufacturer</span><b id="manufacturer">TBC</b></div>
-            <div class="row"><span>Part Number</span><b id="partNumber">TBC</b></div>
-            <div class="row"><span>Serial Number</span><b id="serialNumber">TBC</b></div>
-            <div class="row"><span>Drawing</span><b id="drawingNo">DWG001</b></div>
-          </div>
-        
-          <div class="property-card">
-            <h3>Capacity</h3>
-            <div class="row"><span>Total U</span><b id="totalU">47U</b></div>
-            <div class="row"><span>Used U</span><b id="usedU">-</b></div>
-            <div class="row"><span>Available U</span><b id="availableU">-</b></div>
-            <div class="row"><span>Equipment Items</span><b id="equipmentCount">-</b></div>
-          </div>
+  <div class="property-card">
+    <h3>Rack Front</h3>
+    <div id="rackFrontPreview">
+      <p class="hint">Rack front will appear after selecting a rack.</p>
+    </div>
+  </div>
 
-            <div class="property-card">
-              <h3>Rack Type Summary</h3>
-            
-              <table class="rack-type-table">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Size</th>
-                    <th>Qty</th>
-                    <th>Room</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Stand</td>
-                    <td>47U</td>
-                    <td>12</td>
-                    <td>NIR, NER</td>
-                  </tr>
-                  <tr>
-                    <td>Stand</td>
-                    <td>24U</td>
-                    <td>1</td>
-                    <td>Office Zone</td>
-                  </tr>
-                  <tr>
-                    <td>ODF</td>
-                    <td>47U</td>
-                    <td>32</td>
-                    <td>FER</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-                <p class="hint">Rack front will appear after selecting a rack.</p>
-              </div>
-            </div>
-        
-        </div>
+</div>
 
    <div class="cad-footer">
     Project: TOPAZ BKK1 | Floor: {{ floor_id }} | Drawing: DWG001 | Scale 1:100
