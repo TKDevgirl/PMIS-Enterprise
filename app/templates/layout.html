@@ -1046,8 +1046,8 @@ async function loadEquipment(rackId, element) {
     
     document.getElementById("equipmentCount").innerText =
         data.length;
-    // document.getElementById("rackFrontPreview").innerHTML =
-    // renderRackFrontSVG(data, rackSize);
+    document.getElementById("rackFrontPreview").innerHTML =
+    renderRackFrontSVG(data, rackSize);
 }
 function getEquipmentClass(name) {
     name = name.toUpperCase();
