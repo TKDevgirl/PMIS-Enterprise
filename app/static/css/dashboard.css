@@ -1,32 +1,60 @@
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   font-family: Inter, Arial, sans-serif;
-  background: #f3f6fb;
-  color: #111827;
+  background: #eef3f9;
+  color: #0f172a;
   display: flex;
 }
 
 .sidebar {
-  width: 250px;
+  width: 260px;
   min-height: 100vh;
-  background: linear-gradient(180deg, #071225, #111827);
+  background: linear-gradient(180deg, #020817, #0f172a);
   color: white;
   padding: 28px 18px;
   position: fixed;
+  box-shadow: 16px 0 40px rgba(15,23,42,.18);
 }
 
-.brand {
-  font-size: 30px;
-  font-weight: 800;
+.brand-box {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 28px;
 }
 
-.sub {
+.logo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.brand { font-size: 22px; font-weight: 900; line-height: 1.1; }
+.sub { color: #7dd3fc; font-size: 13px; }
+
+.project-box {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 22px;
+}
+
+.project-box label {
+  display: block;
   color: #93c5fd;
-  margin-bottom: 36px;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.project-box select {
+  width: 100%;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: 800;
 }
 
 .sidebar a {
@@ -36,60 +64,62 @@ body {
   padding: 14px 16px;
   border-radius: 14px;
   margin: 10px 0;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .sidebar a.active,
 .sidebar a:hover {
   background: linear-gradient(90deg, #2563eb, #7c3aed);
-  color: white;
-}
-
-.user {
-  position: absolute;
-  bottom: 24px;
-  color: #cbd5e1;
-  font-size: 14px;
-}
-
-.user span {
-  color: #60a5fa;
+  color: #fff;
 }
 
 .main {
-  margin-left: 250px;
-  padding: 28px;
-  width: calc(100% - 250px);
+  margin-left: 260px;
+  padding: 32px;
+  width: calc(100% - 260px);
 }
 
 .hero {
-  background: linear-gradient(135deg, #111827, #1d4ed8);
+  background:
+    radial-gradient(circle at top right, rgba(59,130,246,.35), transparent 35%),
+    linear-gradient(135deg, #08111f, #1d4ed8);
   color: white;
-  border-radius: 22px;
-  padding: 32px;
+  border-radius: 26px;
+  padding: 34px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.22);
+  box-shadow: 0 24px 50px rgba(15,23,42,.24);
 }
 
-.hero h1 {
-  margin: 0;
-  font-size: 34px;
+.hero h1 { margin: 0; font-size: 34px; letter-spacing: -.5px; }
+.hero p { color: #cbd5e1; margin: 10px 0 14px; }
+
+.hero-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.hero p {
-  color: #cbd5e1;
+.hero-meta span {
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.16);
+  padding: 9px 12px;
+  border-radius: 999px;
+  font-size: 13px;
 }
+
+.online { color: #86efac; }
 
 .hero-actions a {
   background: white;
   color: #1d4ed8;
   padding: 12px 18px;
-  border-radius: 12px;
+  border-radius: 14px;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 800;
   margin-left: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.12);
 }
 
 .kpis {
@@ -100,97 +130,104 @@ body {
 }
 
 .card {
-  background: white;
-  border-radius: 20px;
+  background: rgba(255,255,255,.92);
+  border: 1px solid #e5eaf2;
+  border-radius: 24px;
   padding: 24px;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 16px 35px rgba(15,23,42,.08);
   border-bottom: 5px solid #2563eb;
+  transition: transform .18s ease, box-shadow .18s ease;
 }
 
-.card span {
-  font-size: 30px;
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 45px rgba(15,23,42,.14);
 }
 
-.card h3 {
-  color: #64748b;
-  margin: 14px 0 6px;
-}
-
-.card strong {
-  font-size: 42px;
-  color: #1d4ed8;
-}
-
-.card p {
-  color: #64748b;
-}
+.card span { font-size: 28px; }
+.card h3 { color: #64748b; margin: 14px 0 4px; }
+.card strong { font-size: 42px; color: #1d4ed8; }
+.card p { color: #64748b; margin-bottom: 0; }
 
 .grid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 1.25fr 1fr;
   gap: 22px;
 }
 
 .panel {
-  background: white;
-  border-radius: 22px;
+  background: rgba(255,255,255,.94);
+  border: 1px solid #e5eaf2;
+  border-radius: 24px;
   padding: 26px;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 16px 35px rgba(15,23,42,.08);
 }
 
-.score {
-  font-size: 54px;
-  font-weight: 800;
-  color: #16a34a;
-}
-
-.score span {
+.panel h2 {
+  margin-top: 0;
   font-size: 22px;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.info-table td {
+  padding: 11px 0;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.info-table td:first-child {
   color: #64748b;
+  font-weight: 700;
+  width: 180px;
 }
 
-.green {
-  color: #15803d;
-  font-weight: 600;
-}
-
-.bar {
-  height: 12px;
-  background: #e5e7eb;
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.bar div {
-  height: 100%;
-  background: linear-gradient(90deg, #22c55e, #2563eb);
-}
-
-.alert {
-  padding: 14px;
-  border-radius: 12px;
-  margin: 10px 0;
-}
-
-.alert.ok {
-  background: #dcfce7;
-  color: #166534;
+.info-table td:last-child {
+  font-weight: 800;
 }
 
 .quick {
-  display: flex;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
 }
 
 .quick a {
-  background: #2563eb;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
   color: white;
   text-decoration: none;
-  padding: 14px 18px;
+  padding: 20px;
+  border-radius: 18px;
+  font-weight: 900;
+  text-align: center;
+  box-shadow: 0 14px 28px rgba(37,99,235,.22);
+}
+
+.panel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.panel li {
+  margin: 12px 0;
+  padding: 12px 14px;
   border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid #e5eaf2;
   font-weight: 700;
 }
 
-li {
-  margin: 12px 0;
+@media (max-width: 1100px) {
+  .kpis, .grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 800px) {
+  .sidebar { position: relative; width: 100%; min-height: auto; }
+  body { display: block; }
+  .main { margin-left: 0; width: 100%; }
+  .kpis, .grid { grid-template-columns: 1fr; }
+  .hero { flex-direction: column; align-items: flex-start; gap: 20px; }
 }
