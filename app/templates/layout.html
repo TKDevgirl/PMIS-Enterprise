@@ -1060,40 +1060,40 @@ function getEquipmentClass(name) {
 
     return "";
 }
-let html = `
-<div style="margin-bottom:16px;">
-    <h3 style="margin-bottom:6px;">${rackId}</h3>
-    <div style="
-        display:inline-block;
-        background:#dcfce7;
-        color:#166534;
-        padding:5px 10px;
-        border-radius:999px;
-        font-size:12px;
-        font-weight:700;">
-        Healthy
-    </div>
-</div>
+// let html = `
+// <div style="margin-bottom:16px;">
+//     <h3 style="margin-bottom:6px;">${rackId}</h3>
+//     <div style="
+//         display:inline-block;
+//         background:#dcfce7;
+//         color:#166534;
+//         padding:5px 10px;
+//         border-radius:999px;
+//         font-size:12px;
+//         font-weight:700;">
+//         Healthy
+//     </div>
+// </div>
 
-<div style="
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-    margin-bottom:16px;">
+// <div style="
+//     display:grid;
+//     grid-template-columns:1fr 1fr;
+//     gap:10px;
+//     margin-bottom:16px;">
 
-    <div style="background:#f8fafc; padding:10px; border-radius:10px;">
-        <small>Floor</small><br>
-        <b>{{ floor_id }}</b>
-    </div>
+//     <div style="background:#f8fafc; padding:10px; border-radius:10px;">
+//         <small>Floor</small><br>
+//         <b>{{ floor_id }}</b>
+//     </div>
 
-    <div style="background:#f8fafc; padding:10px; border-radius:10px;">
-        <small>Equipment</small><br>
-        <b>${data.length}</b>
-    </div>
+//     <div style="background:#f8fafc; padding:10px; border-radius:10px;">
+//         <small>Equipment</small><br>
+//         <b>${data.length}</b>
+//     </div>
 
-</div>
-`;
-html += renderRackFrontSVG(data, rackSize);
+// </div>
+// `;
+// html += renderRackFrontSVG(data, rackSize);
 //html += renderRackFront(data, rackSize);
 //html += `<h4>Rack Front ${rackSize}U</h4>`;
 // html += `<h4 style="margin:12px 0 8px;">Rack Front 47U</h4>`;
