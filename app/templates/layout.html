@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PMIS Rack Layout</title>
+    <style>
+         body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f3f6fb;
+            margin: 0;
+            color: #172033;
+        }
+
+        .sidebar {
+            width: 240px;
+            background: linear-gradient(180deg, #07152b, #0d1b35);
+            color: white;
+            min-height: 100vh;
+            padding: 24px;
+            box-shadow: 8px 0 30px rgba(0,0,0,0.08);
+        }
+
+        .content {
+            flex: 1;
+            padding: 34px;
+        }
+
+        .content h1 {
+            font-size: 34px;
+            margin-bottom: 6px;
+        }
+
+        .layout-wrapper {
+            display: flex;
+            gap: 28px;
+            align-items: flex-start;
+        }
+
+        .drawing {
+            position: relative;
+            width: 1050px;
+            height: 680px;
+            background: #ffffff;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+            background-image:
+                linear-gradient(#eef2f7 1px, transparent 1px),
+                linear-gradient(90deg, #eef2f7 1px, transparent 1px);
+            background-size: 100px 100px;
+            overflow: hidden;
+        }
+
+        .drawing h3 {
+            color: #14213d;
+            margin-top: 20px;
+        }
+
+        .area {
+            position: absolute;
+            width: 170px;
+            height: 120px;
+            border: 2px dashed #94a3b8;
+            background: rgba(236, 253, 245, 0.85);
+            padding: 8px;
+            border-radius: 14px;
+            font-size: 12px;
+            box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+        }
+
+        .area-title {
+            font-weight: 800;
+            color: #14213d;
+            margin-bottom: 10px;
+        }
+
+
+
+
+
+        .property {
+            width: 380px;
+            background: white;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            padding: 24px;
+            min-height: 620px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+        }
+        /* Smooth animation */
+        #rackDetail{
+            transition: opacity .25s ease;
+        }
+                .hint {
+            background: #e8f1ff;
+            padding: 14px;
+            border-radius: 10px;
+            color: #1d4ed8;
+        }
+         .page {
+            display: flex;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 0;
+        }
+
+/*.rack-front {*/
+/*    width: 230px;*/
+/*    height: 560px;*/
+/*    position: relative;*/
+/*    margin-top: 10px;*/
+/*    padding: 18px 14px;*/
+
+/*    background: linear-gradient(145deg, #111827, #020617);*/
+/*    border-radius: 16px;*/
+/*    border: 3px solid #334155;*/
+
+/*    box-shadow:*/
+/*        inset 0 0 22px rgba(255,255,255,.08),*/
+/*        14px 14px 0 #0f172a,*/
+/*        0 28px 45px rgba(15,23,42,.35);*/
+/*}*/
+
+.rack-front::before {
+    content: "";
+    position: absolute;
+    right: -18px;
+    top: 18px;
+    width: 18px;
+    height: calc(100% - 18px);
+    background: linear-gradient(180deg, #1e293b, #020617);
+    transform: skewY(35deg);
+    border-radius: 0 12px 12px 0;
+}
+
+.rack-front::after {
+    content: "";
+    position: absolute;
+    left: 18px;
+    bottom: -18px;
+    width: calc(100% - 18px);
+    height: 18px;
+    background: linear-gradient(90deg, #0f172a, #020617);
+    transform: skewX(35deg);
+    border-radius: 0 0 12px 12px;
+}
+
+/*.equipment-block {*/
+/*    position: relative;*/
+/*    z-index: 2;*/
+
+/*    min-height: 38px;*/
+/*    margin: 9px 0;*/
+/*    padding: 6px 8px;*/
+
+/*    border-radius: 8px;*/
+/*    border: 1px solid rgba(148,163,184,.8);*/
+
+/*    background: linear-gradient(180deg, #1f2937, #111827);*/
+/*    color: #e5e7eb;*/
+
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+
+/*    font-size: 10px;*/
+/*    font-weight: 800;*/
+/*    text-align: center;*/
+
+/*    box-shadow:*/
+/*        inset 0 1px 0 rgba(255,255,255,.16),*/
+/*        inset 0 -3px 0 rgba(0,0,0,.35),*/
+/*        0 6px 12px rgba(0,0,0,.28);*/
+/*}*/
+
+.equipment-block::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 8px #22c55e;
+}
+
+.eq-fiber {
+    border-color: #60a5fa;
+}
+
+.eq-cassette {
+    border-color: #22c55e;
+}
+
+.eq-manager {
+    border-color: #facc15;
+}
+
+.eq-copper {
+    border-color: #a78bfa;
+}
+
+.eq-pdu {
+    border-color: #f87171;
+}
+        .rack-screw {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    /*.equipment-block {*/
+    /*    border: 1px solid #777;*/
+    /*    margin: 7px 0;*/
+    /*    min-height: 32px;*/
+    /*    padding: 4px;*/
+    /*    display: flex;*/
+    /*    justify-content: center;*/
+    /*    align-items: center;*/
+    /*    text-align: center;*/
+    /*    font-size: 11px;*/
+    /*    font-weight: bold;*/
+    /*    color: #222;*/
+    /*    background: #e5e7eb;*/
+    /*}*/
+
+        .eq-fiber {
+        background: #dbeafe;
+    }
+
+        .eq-cassette {
+        background: #dcfce7;
+    }
+
+        .eq-manager {
+        background: #ffedd5;
+    }
+
+        .eq-copper {
+        background: #ede9fe;
+    }
+
+        .eq-pdu {
+        background: #fee2e2;
+    }
+        .drawing::after {
+    content: "N ↑";
+    position: absolute;
+    right: 20px;
+    top: 18px;
+    font-weight: 800;
+    color: #64748b;
+    background: white;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.area:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 32px rgba(15, 23, 42, 0.14);
+}
+
+.area-title::before {
+    content: "▣ ";
+    color: #22c55e;
+}
+
+/*.rack-front-u {*/
+/*    width: 260px;*/
+/*    height: 620px;*/
+/*    background: linear-gradient(145deg, #111827, #020617);*/
+/*    border: 3px solid #334155;*/
+/*    border-radius: 16px;*/
+/*    padding: 14px;*/
+/*    position: relative;*/
+/*    box-shadow:*/
+/*        inset 0 0 22px rgba(255,255,255,.08),*/
+/*        14px 14px 0 #0f172a,*/
+/*        0 28px 45px rgba(15,23,42,.35);*/
+/*}*/
+
+.rack-u-row {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    height: 11px;
+    font-size: 8px;
+    color: #94a3b8;
+}
+
+.u-label {
+    text-align: right;
+    padding-right: 6px;
+}
+
+.u-slot {
+    border-top: 1px solid rgba(148,163,184,.18);
+    position: relative;
+}
+
+/*.u-equipment {*/
+/*    position: absolute;*/
+/*    left: 40px;*/
+/*    right: 12px;*/
+/*    border-radius: 6px;*/
+/*    background: linear-gradient(180deg, #1e293b, #0f172a);*/
+/*    border: 1px solid #60a5fa;*/
+/*    color: #e5e7eb;*/
+/*    font-size: 9px;*/
+/*    font-weight: 800;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    text-align: center;*/
+/*    z-index: 5;*/
+/*    box-shadow:*/
+/*        inset 0 1px 0 rgba(255,255,255,.18),*/
+/*        0 6px 12px rgba(0,0,0,.28);*/
+/*}*/
+
+/*.rack-front-u {*/
+/*    width: 280px;*/
+/*    height: 620px;*/
+/*    background: linear-gradient(145deg, #111827, #020617);*/
+/*    border: 3px solid #334155;*/
+/*    border-radius: 16px;*/
+/*    padding: 14px;*/
+/*    position: relative;*/
+/*    box-shadow:*/
+/*        inset 0 0 22px rgba(255,255,255,.08),*/
+/*        12px 12px 0 #0f172a,*/
+/*        0 28px 45px rgba(15,23,42,.35);*/
+/*}*/
+
+.rack-u-row {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    height: 11px;
+    font-size: 8px;
+    color: #94a3b8;
+}
+
+.u-label {
+    text-align: right;
+    padding-right: 6px;
+}
+
+.u-slot {
+    border-top: 1px solid rgba(148,163,184,.18);
+}
+
+/*.u-equipment {*/
+/*    position: absolute;*/
+/*    left: 52px;*/
+/*    right: 34px;*/
+/*    border-radius: 6px;*/
+/*    background: linear-gradient(180deg, #1e293b, #0f172a);*/
+/*    border: 1px solid #60a5fa;*/
+/*    color: #e5e7eb;*/
+/*    font-size: 9px;*/
+/*    font-weight: 800;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    text-align: center;*/
+/*    z-index: 5;*/
+/*}*/
+
+/*.side-pdu {*/
+/*    position: absolute;*/
+/*    top: 28px;*/
+/*    width: 14px;*/
+/*    height: 540px;*/
+/*    background: linear-gradient(180deg, #374151, #111827);*/
+/*    border: 1px solid #64748b;*/
+/*    border-radius: 6px;*/
+/*    color: white;*/
+/*    font-size: 8px;*/
+/*    writing-mode: vertical-rl;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    z-index: 6;*/
+/*}*/
+
+         .rack-front-clean {
+    width: 270px;
+    height: 620px;
+    background: #0f172a;
+    border: 3px solid #334155;
+    border-radius: 18px;
+    padding: 14px;
+    position: relative;
+    box-shadow:
+        inset 0 0 20px rgba(255,255,255,.08),
+        0 24px 45px rgba(15,23,42,.35);
+}
+
+.u-grid {
+    position: relative;
+    height: 560px;
+    margin-left: 32px;
+    margin-right: 28px;
+    border-left: 1px solid #475569;
+    border-right: 1px solid #475569;
+}
+
+.u-row {
+    height: 11px;
+    border-top: 1px solid rgba(148,163,184,.18);
+    position: relative;
+}
+
+.u-label {
+    position: absolute;
+    left: -30px;
+    top: -5px;
+    font-size: 7px;
+    color: #94a3b8;
+}
+
+.u-device {
+    position: absolute;
+    left: 4px;
+    right: 4px;
+    border-radius: 5px;
+    border: 1px solid #60a5fa;
+    background: linear-gradient(180deg, #1e293b, #020617);
+    color: #e5e7eb;
+    font-size: 8px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 5;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,.35);
+}
+
+.equipment-group {
+    cursor: pointer;
+    transition: .2s;
+}
+
+.equipment-group:hover rect{
+    stroke:#22c55e;
+    stroke-width:3;
+    filter:drop-shadow(0 0 6px #22c55e);
+}
+
+.u-device.fiber {
+    border-color: #60a5fa;
+}
+
+.u-device.cassette {
+    border-color: #22c55e;
+}
+
+.u-device.manager {
+    border-color: #facc15;
+}
+
+.u-device.copper {
+    border-color: #a78bfa;
+}
+
+.u-device.pdu {
+    border-color: #f87171;
+}
+
+/*.side-pdu-clean {*/
+/*    position: absolute;*/
+/*    top: 50px;*/
+/*    width: 20px;*/
+/*    height: 520px;*/
+/*    border-radius: 8px;*/
+/*    background: linear-gradient(180deg, #334155, #020617);*/
+/*    border: 1px solid #64748b;*/
+/*    color: #cbd5e1;*/
+/*    font-size: 7px;*/
+/*    writing-mode: vertical-rl;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*}*/
+.side-pdu-clean{
+    position:absolute;
+    top:20px;
+    width:18px;
+    border-radius:8px;
+
+    background:linear-gradient(
+        180deg,
+        #475569,
+        #0f172a
+    );
+
+    border:1px solid #64748b;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+}
+.side-pdu-clean span{
+
+    transform:rotate(90deg);
+
+    white-space:nowrap;
+
+    font-size:7px;
+
+    color:#cbd5e1;
+}
+.side-left {
+    left: 36px;
+}
+
+.side-right {
+    right: 26px;
+}
+.cad-footer {
+    position: absolute;
+    left: 20px;
+    bottom: 14px;
+    font-size: 11px;
+    color: #64748b;
+    background: rgba(255,255,255,0.9);
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+.drawing {
+    perspective: 1200px;
+}
+
+.area {
+    transform-style: preserve-3d;
+}
+
+.area:hover {
+    transform: translateY(-6px) rotateX(3deg) rotateY(-3deg);
+}
+
+.rack {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 22px;
+    margin: 4px;
+
+    background: #ffffff;
+    border: 2px solid #1e293b;
+    border-radius: 3px;
+
+    color: #0f172a;
+    font-size: 8px;
+    font-weight: 800;
+
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(15, 23, 42, 0.15);
+    transition: 0.15s ease;
+}
+
+.rack:hover {
+    background: #dbeafe;
+    border-color: #2563eb;
+    transform: translateY(-2px);
+}
+
+.rack.selected {
+    background: #fee2e2;
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.22);
+}
+.search-highlight{
+    animation:flash 1s infinite;
+}
+
+@keyframes flash{
+    0%{
+        box-shadow:0 0 0 #22c55e;
+    }
+    50%{
+        box-shadow:0 0 18px #22c55e;
+    }
+    100%{
+        box-shadow:0 0 0 #22c55e;
+    }
+}
+.rack span {
+    pointer-events: none;
+}
+
+
+.floor-label {
+    position: absolute;
+    left: 24px;
+    top: 18px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #334155;
+    background: rgba(255,255,255,.92);
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+}
+
+.u-device {
+    cursor: pointer;
+}
+
+.u-device:hover {
+    filter: brightness(1.35);
+}
+
+.u-device.active {
+    stroke: #ef4444;
+    stroke-width: 2.5;
+}
+
+.tooltip-box {
+    position: fixed;
+    background: #0f172a;
+    color: white;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 12px;
+    z-index: 9999;
+    pointer-events: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,.25);
+    display: none;
+}
+
+.area {
+    border: 3px solid #64748b;
+    border-radius: 12px;
+    background: linear-gradient(145deg, rgba(236,253,245,.95), rgba(220,252,231,.7));
+    box-shadow:
+        8px 8px 0 rgba(100,116,139,.18),
+        0 18px 35px rgba(15,23,42,.12);
+}
+
+.area::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    bottom: -3px;
+    width: 42px;
+    height: 6px;
+    background: white;
+    border-left: 3px solid #64748b;
+    border-right: 3px solid #64748b;
+}
+
+.area-title {
+    letter-spacing: .2px;
+}
+
+.area-title::after {
+    content: "  |  " attr(data-roomtype);
+    color: #64748b;
+    font-size: 10px;
+}
+.rack span {
+    z-index: 2;
+    letter-spacing: .2px;
+}
+    </style>
+</head>
+
+
+
+<body>
+<div id="tooltip" class="tooltip-box"></div>
+<div class="page">
+
+    <div class="sidebar">
+        <h2>PMIS</h2>
+        <p><b>Module</b></p>
+        <p>🔴 Layout Viewer</p>
+        <p>⚪ Rack Data</p>
+        <p>⚪ Equipment Data</p>
+        <hr>
+        <p><b>Floor:</b> {{ floor_id }}</p>
+        <p><b>Total Rooms:</b> {{ rooms|length }}</p>
+        <hr>
+        <p><b>Floor Navigation</b></p>
+        <hr>
+        <p><b>Search Rack</b></p>
+        <input id="rackSearch"
+           placeholder="e.g. RK-62"
+           oninput="searchRack()"
+           style="width:100%; padding:8px; border-radius:8px; border:0;">
+        <p><a href="/web/layout/GF" style="color:white;">GF</a></p>
+        <p><a href="/web/layout/FF" style="color:white;">FF</a></p>
+        <p><a href="/web/layout/LF" style="color:white;">LF</a></p>
+    </div>
+
+    <div class="content">
+        <h1>PMIS Enterprise V1</h1>
+        <p>Click rack to view detail and equipment.</p>
+<div class="layout-wrapper">
+
+    <div class="drawing">
+        <h3 style="text-align:center;">Drawing: DWG001</h3>
+
+
+
+        {% set room_names = {
+            "FE_RM01": "FER_RM01",
+            "FE_RM02": "FER_RM02",
+            "FE_RM03": "FER_RM03",
+            "FE_RM04": "FER_RM04",
+
+            "NWK_E_RM01": "NER_RM01",
+            "NWK_E_RM02": "NER_RM02",
+            "NWK_E_RM03": "NER_RM03",
+            "NWK_E_RM04": "NER_RM04",
+
+            "NWK_I_RM01": "NIR_RM01",
+            "NWK_I_RM02": "NIR_RM02",
+
+            "OFC01": "OFFICE"
+        } %}
+
+        {% set room_positions = {
+            "FE_RM01": {"left":60, "top":20},
+            "NWK_E_RM01": {"left":450, "top":70},
+            "FE_RM03": {"left":800, "top":20},
+            "NWK_I_RM01": {"left":800, "top":160},
+
+            "OFC01": {"left":60, "top":250},
+            "NWK_E_RM02": {"left":450, "top":500},
+            "NWK_E_RM03": {"left":800, "top":160},
+
+            "FE_RM02": {"left":60, "top":500},
+            "NWK_E_RM04": {"left":800, "top":360},
+            "FE_RM04": {"left":800, "top":500},
+            "NWK_I_RM02": {"left":800, "top":360},
+
+        } %}
+
+        {% for room_id, racks in rooms.items() %}
+        {% set pos = room_positions.get(room_id, {"left":50,"top":50}) %}
+
+
+        <div class="area"
+             style="left:{{ pos.left }}px; top:{{ pos.top }}px;">
+
+        <div class="area-title"
+             data-roomtype="{{ room_names.get(room_id, room_id).split('_')[0] }}">
+            {{ room_names.get(room_id, room_id) }} Area
+        </div>
+
+            {% for rack in racks %}
+        <div class="rack"
+             title="{{ rack.Rack_ID }}"
+             onclick="loadEquipment('{{ rack.Rack_ID }}', this)">
+            <span>{{ rack.Rack_Label }}</span>
+        </div>
+            {% endfor %}
+
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="property">
+        <h2>Rack Property</h2>
+        <div id="rackDetail" class="hint">
+            Click a rack to see details.
+        </div>
+    </div>
+
+   <div class="cad-footer">
+    Project: TOPAZ BKK1 | Floor: {{ floor_id }} | Drawing: DWG001 | Scale 1:100
+    </div>
+
+</div>
+            </div>
+</div>
+
+<script>
+
+const equipmentCache = {};
+const rackCache = {};
+async function loadEquipment(rackId, element) {
+    document.querySelectorAll(".rack").forEach(r => r.classList.remove("selected"));
+    element.classList.add("selected");
+
+    // const response = await fetch(`/api/equipment/rack/${rackId}`);
+    // const data = await response.json();
+    //
+    // const rackInfo = await fetch(`/api/racks/${rackId}`);
+    // const rack = await rackInfo.json();
+    let data;
+    let rack;
+
+    if (equipmentCache[rackId]) {
+        data = equipmentCache[rackId];
+    } else {
+        const response = await fetch(`/api/equipment/rack/${rackId}`);
+        data = await response.json();
+        equipmentCache[rackId] = data;
+    }
+
+    if (rackCache[rackId]) {
+        rack = rackCache[rackId];
+    } else {
+        const rackInfo = await fetch(`/api/racks/${rackId}`);
+        rack = await rackInfo.json();
+        rackCache[rackId] = rack;
+    }
+    const rackSizeText = String(rack.Rack_Size || "47U");
+    const rackSize = parseInt(rackSizeText) || 47;
+    const box = document.getElementById("rackDetail");
+     box.innerHTML = `<div class="hint">Loading rack...</div>`;
+
+    if (!Array.isArray(data)) {
+        box.innerHTML = `<b>${rackId}</b><br><br>No equipment found`;
+        return;
+    }
+function getEquipmentClass(name) {
+    name = name.toUpperCase();
+
+    if (name.includes("CASSETTE")) return "eq-cassette";
+    if (name.includes("MANAGER")) return "eq-manager";
+    if (name.includes("COPPER")) return "eq-copper";
+    if (name.includes("PDU")) return "eq-pdu";
+    if (name.includes("FIBER") || name.includes("ODF")) return "eq-fiber";
+
+    return "";
+}
+let html = `
+<div style="margin-bottom:16px;">
+    <h3 style="margin-bottom:6px;">${rackId}</h3>
+    <div style="
+        display:inline-block;
+        background:#dcfce7;
+        color:#166534;
+        padding:5px 10px;
+        border-radius:999px;
+        font-size:12px;
+        font-weight:700;">
+        Healthy
+    </div>
+</div>
+
+<div style="
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:16px;">
+
+    <div style="background:#f8fafc; padding:10px; border-radius:10px;">
+        <small>Floor</small><br>
+        <b>{{ floor_id }}</b>
+    </div>
+
+    <div style="background:#f8fafc; padding:10px; border-radius:10px;">
+        <small>Equipment</small><br>
+        <b>${data.length}</b>
+    </div>
+
+</div>
+`;
+html += renderRackFrontSVG(data, rackSize);
+//html += renderRackFront(data, rackSize);
+//html += `<h4>Rack Front ${rackSize}U</h4>`;
+// html += `<h4 style="margin:12px 0 8px;">Rack Front 47U</h4>`;
+function renderRackFront(data, rackSize) {
+    const unitHeight = 12;
+    const gridHeight = rackSize * unitHeight;
+    const rackHeight = gridHeight + 50;
+
+    let html = `
+        <h4 style="margin:12px 0 8px;">Rack Front ${rackSize}U</h4>
+        <div class="rack-front-clean" style="height:${rackHeight}px;">
+    `;
+
+    html += `<div class="u-grid" style="height:${gridHeight}px;">`;
+
+    for (let u = rackSize; u >= 1; u--) {
+        html += `
+            <div class="u-row">
+                <span class="u-label">${u}U</span>
+            </div>
+        `;
+    }
+
+    data.forEach(item => {
+        const rawName = String(item.Equipment_Type || "");
+        const name = rawName.toUpperCase();
+        const mountType = String(item.Mount_Type || "").toUpperCase();
+
+        if (
+            name.includes("CABINET") ||
+            name.includes("STAND") ||
+            name.includes("RACK")
+        ) {
+            return;
+        }
+
+        if (mountType === "SIDE") {
+            return;
+        }
+
+        const startU = parseInt(item.Start_U);
+        const heightU = parseInt(item.Height_U);
+
+        if (!startU || !heightU) return;
+        if (startU > rackSize) return;
+
+        const top = (rackSize - startU) * unitHeight;
+        const height = heightU * unitHeight - 2;
+
+        const label = shortName(rawName);
+        const deviceClass = getDeviceClass(rawName);
+
+        html += `
+            <div class="u-device"
+                 style="top:${top}px; height:${height}px;">
+                ${rawName}
+            </div>
+        `;
+    });
+
+    html += `</div>`;
+
+    data.forEach(item => {
+        const rawName = String(item.Equipment_Type || "");
+        const name = rawName.toUpperCase();
+        const mountType = String(item.Mount_Type || "").toUpperCase();
+        const side = String(item.Side || "").toUpperCase();
+
+        if (mountType !== "SIDE") return;
+
+        const sideClass = side === "LEFT" ? "side-left" : "side-right";
+
+        html += `
+        <div class="side-pdu-clean ${sideClass}"
+             style="height:${gridHeight}px;">
+            <span>${rawName}</span>
+        </div>
+        `;
+    });
+
+    html += `</div>`;
+    return html;
+}
+function renderRackFrontSVG(data, rackSize) {
+    const svgW = 260;
+    const svgH = 620;
+    const rackX = 54;
+    const rackY = 40;
+    const rackW = 160;
+    const rackH = 560;
+    const unitH = rackH / rackSize;
+
+    let svg = `
+    <h4 style="margin:12px 0 8px;">Rack Front ${rackSize}U</h4>
+    <svg width="${svgW}" height="${svgH}" viewBox="0 0 ${svgW} ${svgH}">
+        <rect x="22" y="18" width="216" height="580" rx="18"
+              fill="#0f172a" stroke="#334155" stroke-width="4"/>
+
+        <rect x="${rackX}" y="${rackY}" width="${rackW}" height="${rackH}"
+              fill="#111827" stroke="#64748b" stroke-width="1"/>
+
+        <rect x="38" y="${rackY}" width="8" height="${rackH}" rx="5"
+              fill="#1e293b" stroke="#64748b"/>
+        <rect x="218" y="${rackY}" width="8" height="${rackH}" rx="5"
+              fill="#1e293b" stroke="#64748b"/>
+    `;
+
+    for (let u = rackSize; u >= 1; u--) {
+        const y = rackY + (rackSize - u) * unitH;
+
+        if (u % 5 === 0 || u === rackSize || u === 1) {
+            svg += `<text x="40" y="${y + 4}" font-size="6" fill="#94a3b8" text-anchor="middle">${u}U</text>`;
+        }
+
+        svg += `<line x1="${rackX}" y1="${y}" x2="${rackX + rackW}" y2="${y}"
+                     stroke="rgba(148,163,184,.16)" stroke-width="1"/>`;
+    }
+
+    data.forEach(item => {
+        const rawName = String(item.Equipment_Type || "");
+        const name = rawName.toUpperCase();
+        const mountType = String(item.Mount_Type || "").toUpperCase();
+
+        if (mountType === "SIDE") return;
+        if (name.includes("CABINET") || name.includes("STAND") || name.includes("RACK")) return;
+
+        const startU = parseInt(item.Start_U);
+        const heightU = parseInt(item.Height_U);
+
+        if (!startU || !heightU || startU > rackSize) return;
+
+        const y = rackY + (rackSize - startU) * unitH;
+        const h = heightU * unitH - 2;
+
+        let stroke = "#60a5fa";
+        if (name.includes("CASSETTE")) stroke = "#22c55e";
+        if (name.includes("MANAGER")) stroke = "#facc15";
+        if (name.includes("COPPER")) stroke = "#a78bfa";
+
+        const deviceClass = getDeviceClass(rawName);
+        const label = shortName(rawName);
+
+        svg += `
+        <g class="equipment-group"
+           onmousemove="showTooltip(event, '${rawName}', '${startU}', '${heightU}')"
+           onmouseleave="hideTooltip()"
+           onclick="selectEquipment(this)">
+            <rect class="u-device"
+                  x="${rackX + 8}" y="${y}"
+                  width="${rackW - 16}" height="${h}" rx="5"
+                  fill="#020617" stroke="${stroke}" stroke-width="1.5"/>
+            <text x="${rackX + rackW / 2}" y="${y + h / 2 + 3}"
+                  font-size="6" fill="#e5e7eb"
+                  text-anchor="middle" font-weight="600">
+                  ${label}
+            </text>
+        </g>`;
+    });
+
+    data.forEach(item => {
+        const rawName = String(item.Equipment_Type || "");
+        const mountType = String(item.Mount_Type || "").toUpperCase();
+        const side = String(item.Side || "").toUpperCase();
+
+        if (mountType !== "SIDE") return;
+
+        const x = side === "LEFT" ? 38 : 218;
+
+        svg += `
+        <rect x="${x}" y="${rackY}" width="8" height="${rackH}" rx="5"
+              fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+        <circle cx="${x + 4}" cy="${rackY + 18}" r="2.5" fill="#22c55e"/>
+        `;
+    });
+
+    svg += `
+        <circle cx="40" cy="28" r="3" fill="#22c55e"/>
+        <circle cx="224" cy="28" r="3" fill="#22c55e"/>
+    </svg>`;
+
+    return svg;
+}
+function getDeviceClass(name) {
+    name = String(name || "").toUpperCase();
+
+    if (name.includes("CASSETTE")) return "cassette";
+    if (name.includes("MANAGER")) return "manager";
+    if (name.includes("COPPER")) return "copper";
+    if (name.includes("PDU")) return "pdu";
+    if (name.includes("FIBER") || name.includes("ODF")) return "fiber";
+
+    return "";
+}
+
+function shortName(name) {
+    name = String(name || "").toUpperCase();
+
+    if (name.includes("HORIZONTAL FRONT CABLE")) return "HFCM";
+    if (name.includes("HORIZONTAL REAR CABLE")) return "HRCM";
+    if (name.includes("FIBER PANEL")) return "FIBER PANEL";
+    if (name.includes("FIBER CASSETTE")) return "CASSETTE";
+    if (name.includes("FIBER PATCH CORD")) return "FIBER PATCH";
+    if (name.includes("COPPER PATCH PANEL")) return "COPPER PANEL";
+    if (name.includes("COPPER PATCH CORD")) return "COPPER PATCH";
+    if (name.includes("PDU")) return "PDU";
+
+    return name;
+}
+
+function showTooltip(event, name, startU, heightU) {
+    const tooltip = document.getElementById("tooltip");
+
+    tooltip.innerHTML = `
+        <b>${name}</b><br>
+        Start U: ${startU}<br>
+        Height: ${heightU}U
+    `;
+
+    tooltip.style.left = event.clientX + 14 + "px";
+    tooltip.style.top = event.clientY + 14 + "px";
+    tooltip.style.display = "block";
+}
+
+function hideTooltip() {
+    document.getElementById("tooltip").style.display = "none";
+}
+
+function selectEquipment(group) {
+    document.querySelectorAll(".u-device").forEach(x => {
+        x.classList.remove("active");
+    });
+
+    const rect = group.querySelector(".u-device");
+    if (rect) {
+        rect.classList.add("active");
+    }
+}
+
+function searchRack() {
+    const keyword = document.getElementById("rackSearch").value.toUpperCase().trim();
+
+    document.querySelectorAll(".rack").forEach(rack => {
+        const text = rack.innerText.toUpperCase();
+        const title = rack.getAttribute("title").toUpperCase();
+
+        if (!keyword) {
+            rack.style.outline = "";
+            return;
+        }
+        if (text.includes(keyword) || title.includes(keyword)) {
+
+            rack.style.outline = "3px solid #ef4444";
+
+            rack.classList.add("search-highlight");
+
+            rack.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+            setTimeout(() => {
+                rack.classList.remove("search-highlight");
+            }, 2000);
+
+        } else {
+
+            rack.style.outline = "";
+            rack.classList.remove("search-highlight");
+
+        }
+    });
+}
+
+// box.innerHTML = html;
+
+    box.style.opacity = 0;
+
+    setTimeout(() => {
+    box.innerHTML = html;
+    box.style.opacity = 1;
+}, 120);
+}
+</script>
+
+</body>
+</html>
