@@ -20,19 +20,33 @@ body {
 
 .brand-box {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 14px;
-  align-items: center;
-  margin-bottom: 28px;
+  margin-bottom: 30px;
+  padding: 18px 10px 20px;
+  border-bottom: 1px solid rgba(255,255,255,.12);
 }
 
 .logo {
-  width: 42px;
-  height: 42px;
+  width: 120px;
+  height: auto;
   object-fit: contain;
+  margin-left: -6px;
 }
 
-.brand { font-size: 22px; font-weight: 900; line-height: 1.1; }
-.sub { color: #7dd3fc; font-size: 13px; }
+.brand {
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.6px;
+}
+
+.sub {
+  color: #7dd3fc;
+  font-size: 13px;
+  margin-top: 4px;
+}
 
 .project-box {
   background: rgba(255,255,255,.08);
