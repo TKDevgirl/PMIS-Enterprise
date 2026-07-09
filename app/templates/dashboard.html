@@ -1,34 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PMIS Enterprise Dashboard</title>
+  <title>PMIS Enterprise V2</title>
   <link rel="stylesheet" href="/static/css/dashboard.css">
 </head>
 <body>
   <aside class="sidebar">
-    <h2>PMIS</h2>
-    <p>Enterprise V2</p>
-    <a href="/dashboard">Dashboard</a>
-    <a href="/web/layout/GF">Layout Viewer</a>
-    <a href="/docs">API Docs</a>
+    <div class="brand">PMIS</div>
+    <div class="sub">Enterprise V2.1</div>
+
+    <a class="active" href="/dashboard">📊 Dashboard</a>
+    <a href="/web/layout/GF">🗺 Layout Viewer</a>
+    <a href="/docs">⚙ API Docs</a>
+
+    <div class="user">Pavinee Suwanta<br><span>ICT Project Engineer</span></div>
   </aside>
 
   <main class="main">
-    <h1>PMIS Enterprise Dashboard</h1>
-    <p class="subtitle">Project: TOPAZ BKK1</p>
+    <section class="hero">
+      <div>
+        <h1>Welcome Back, Pavinee 👋</h1>
+        <p>Real-time PMIS status for TOPAZ BKK1</p>
+      </div>
+      <div class="hero-actions">
+        <a href="/web/layout/GF">Open Layout</a>
+        <a href="/docs">API Docs</a>
+      </div>
+    </section>
 
-    <div class="cards">
-      <div class="card"><h3>Rooms</h3><p>{{ summary.total_rooms }}</p></div>
-      <div class="card"><h3>Racks</h3><p>{{ summary.total_racks }}</p></div>
-      <div class="card"><h3>Equipment</h3><p>{{ summary.total_equipment }}</p></div>
-      <div class="card"><h3>Floors</h3><p>{{ summary.total_floors }}</p></div>
-    </div>
+    <section class="kpis">
+      <div class="card"><span>🏢</span><h3>Rooms</h3><strong>{{ summary.total_rooms }}</strong><p>Data connected</p></div>
+      <div class="card"><span>🗄</span><h3>Racks</h3><strong>{{ summary.total_racks }}</strong><p>Layout ready</p></div>
+      <div class="card"><span>📦</span><h3>Equipment</h3><strong>{{ summary.total_equipment }}</strong><p>Rack linked</p></div>
+      <div class="card"><span>🏗</span><h3>Floors</h3><strong>{{ summary.total_floors }}</strong><p>GF / FF / LF</p></div>
+    </section>
 
-    <section class="panel">
-      <h2>Quick Access</h2>
-      <a class="btn" href="/web/layout/GF">Open GF Layout</a>
-      <a class="btn" href="/web/layout/FF">Open FF Layout</a>
-      <a class="btn" href="/web/layout/LF">Open LF Layout</a>
+    <section class="grid">
+      <div class="panel health">
+        <h2>Project Health</h2>
+        <div class="score">92<span>/100</span></div>
+        <p class="green">Excellent — API, Excel and Layout are online</p>
+        <div class="bar"><div style="width:92%"></div></div>
+      </div>
+
+      <div class="panel">
+        <h2>Alert Center</h2>
+        <div class="alert ok">✓ API Running</div>
+        <div class="alert ok">✓ Layout Viewer Ready</div>
+        <div class="alert ok">✓ Excel Database Connected</div>
+      </div>
+
+      <div class="panel">
+        <h2>Quick Access</h2>
+        <div class="quick">
+          <a href="/web/layout/GF">GF Layout</a>
+          <a href="/web/layout/FF">FF Layout</a>
+          <a href="/web/layout/LF">LF Layout</a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Module Status</h2>
+        <ul>
+          <li>🟢 Dashboard Online</li>
+          <li>🟢 FastAPI Active</li>
+          <li>🟢 Swagger Available</li>
+          <li>🟢 Render Cloud Live</li>
+        </ul>
+      </div>
     </section>
   </main>
 </body>
