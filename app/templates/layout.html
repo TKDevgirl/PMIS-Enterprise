@@ -775,6 +775,58 @@
     height: auto;
     max-height: 620px;
 }
+.rack-info-bottom .property-card {
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.rack-info-bottom .property-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 5px;
+  width: 100%;
+  background: linear-gradient(90deg, #0f172a, #2563eb);
+}
+
+.rack-info-bottom .property-card h3 {
+  margin: 0 0 18px;
+  font-size: 18px;
+  color: #0f172a;
+}
+
+.rack-info-bottom .row {
+  padding: 10px 0;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.rack-info-bottom .row span {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.rack-info-bottom .row b {
+  color: #0f172a;
+  font-weight: 800;
+  text-align: right;
+}
+
+#installStatus {
+  color: #1d4ed8;
+}
+
+#usedU, #availableU, #equipmentCount {
+  color: #2563eb;
+}
+
+
+        
     </style>
 </head>
 
@@ -878,7 +930,7 @@
             <div class="rack-info-bottom">
         
               <div class="property-card">
-                <h3>General Information</h3>
+                <h3>📋 General Information</h3>
                 <div class="row"><span>Rack Type</span><b id="rackType">-</b></div>
                 <div class="row"><span>Floor</span><b id="rackFloor">-</b></div>
                 <div class="row"><span>Room</span><b id="rackRoom">-</b></div>
@@ -886,7 +938,7 @@
               </div>
         
               <div class="property-card">
-                <h3>Installation</h3>
+                <h3>🛠 Installation</h3>
                 <div class="row"><span>Status</span><b id="installStatus">Planned</b></div>
                 <div class="row"><span>Installation Date</span><b id="installDate">TBC</b></div>
                 <div class="row"><span>Installed By</span><b>ByteBridge</b></div>
@@ -894,7 +946,7 @@
               </div>
         
               <div class="property-card">
-                <h3>Asset Information</h3>
+                <h3>🏷 Asset Information</h3>
                 <div class="row"><span>Manufacturer</span><b id="manufacturer">TBC</b></div>
                 <div class="row"><span>Part Number</span><b id="partNumber">TBC</b></div>
                 <div class="row"><span>Serial Number</span><b id="serialNumber">TBC</b></div>
@@ -902,7 +954,7 @@
               </div>
         
               <div class="property-card">
-                <h3>Capacity</h3>
+                <h3>📊 Capacity</h3>
                 <div class="row"><span>Total U</span><b id="totalU">47U</b></div>
                 <div class="row"><span>Used U</span><b id="usedU">-</b></div>
                 <div class="row"><span>Available U</span><b id="availableU">-</b></div>
