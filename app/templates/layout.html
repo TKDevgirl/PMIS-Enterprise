@@ -133,6 +133,13 @@
             color:#2563eb;
             font-size:15px;
         }
+
+#rackFrontPreview svg {
+    max-height: 560px;
+    width: 100%;
+    height: auto;
+}
+
         
         .row{
             display:flex;
@@ -621,7 +628,7 @@
 }
 
 .area:hover {
-    transform: translateY(-6px) rotateX(3deg) rotateY(-3deg);
+    transform: translateY(-2px);
 }
 
 .rack {
@@ -769,12 +776,6 @@
   border: 1px solid #d1d5db;
   font-weight: 600;
 }
-
-#rackFrontPreview svg {
-    width: 100%;
-    height: auto;
-    max-height: 620px;
-}
     </style>
 </head>
 
@@ -912,6 +913,7 @@
             </div>
         
           </div>
+        </div>
         <div class="property">
     
           <div class="rack-summary">
@@ -939,15 +941,20 @@
     </div>
 
 </div>
+            </div>
 </div>
 
 <script>
 
 const equipmentCache = {};
 const rackCache = {};
+const rackFrontCache = {};
 async function loadEquipment(rackId, element) {
     document.querySelectorAll(".rack").forEach(r => r.classList.remove("selected"));
     element.classList.add("selected");
+
+    document.getElementById("rackFrontPreview").innerHTML =
+        `<p class="hint">Loading rack front...</p>`;
 
     // const response = await fetch(`/api/equipment/rack/${rackId}`);
     // const data = await response.json();
@@ -1030,6 +1037,8 @@ async function loadEquipment(rackId, element) {
         document.getElementById("equipmentCount").innerText = "0";
         document.getElementById("usedU").innerText = "0U";
         document.getElementById("availableU").innerText = rackSize + "U";
+        document.getElementById("rackFrontPreview").innerHTML =
+            `<p class="hint">No equipment found for this rack.</p>`;
 
     return;
     }
@@ -1053,8 +1062,12 @@ async function loadEquipment(rackId, element) {
     
     document.getElementById("equipmentCount").innerText =
         data.length;
+    if (!rackFrontCache[rackId]) {
+        rackFrontCache[rackId] = renderRackFrontSVG(data, rackSize);
+    }
+
     document.getElementById("rackFrontPreview").innerHTML =
-    renderRackFrontSVG(data, rackSize);
+        rackFrontCache[rackId];
 }
 function getEquipmentClass(name) {
     name = name.toUpperCase();
