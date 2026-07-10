@@ -133,13 +133,6 @@
             color:#2563eb;
             font-size:15px;
         }
-
-#rackFrontPreview svg {
-    max-height: 560px;
-    width: 100%;
-    height: auto;
-}
-
         
         .row{
             display:flex;
@@ -534,7 +527,7 @@
 .equipment-group:hover rect{
     stroke:#22c55e;
     stroke-width:3;
-    filter:drop-shadow(0 0 6px #22c55e);
+    /* filter removed for faster hover */
 }
 
 .u-device.fiber {
@@ -776,6 +769,12 @@
   border: 1px solid #d1d5db;
   font-weight: 600;
 }
+
+#rackFrontPreview svg {
+    width: 100%;
+    height: auto;
+    max-height: 620px;
+}
     </style>
 </head>
 
@@ -913,7 +912,6 @@
             </div>
         
           </div>
-        </div>
         <div class="property">
     
           <div class="rack-summary">
@@ -941,7 +939,6 @@
     </div>
 
 </div>
-            </div>
 </div>
 
 <script>
@@ -953,8 +950,12 @@ async function loadEquipment(rackId, element) {
     document.querySelectorAll(".rack").forEach(r => r.classList.remove("selected"));
     element.classList.add("selected");
 
-    document.getElementById("rackFrontPreview").innerHTML =
-        `<p class="hint">Loading rack front...</p>`;
+    const rackFrontBox = document.getElementById("rackFrontPreview");
+    if (rackFrontCache[rackId]) {
+        rackFrontBox.innerHTML = rackFrontCache[rackId];
+    } else {
+        rackFrontBox.innerHTML = `<p class="hint">Loading rack front...</p>`;
+    }
 
     // const response = await fetch(`/api/equipment/rack/${rackId}`);
     // const data = await response.json();
@@ -1037,8 +1038,6 @@ async function loadEquipment(rackId, element) {
         document.getElementById("equipmentCount").innerText = "0";
         document.getElementById("usedU").innerText = "0U";
         document.getElementById("availableU").innerText = rackSize + "U";
-        document.getElementById("rackFrontPreview").innerHTML =
-            `<p class="hint">No equipment found for this rack.</p>`;
 
     return;
     }
@@ -1066,8 +1065,7 @@ async function loadEquipment(rackId, element) {
         rackFrontCache[rackId] = renderRackFrontSVG(data, rackSize);
     }
 
-    document.getElementById("rackFrontPreview").innerHTML =
-        rackFrontCache[rackId];
+    rackFrontBox.innerHTML = rackFrontCache[rackId];
 }
 function getEquipmentClass(name) {
     name = name.toUpperCase();
