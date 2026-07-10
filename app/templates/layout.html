@@ -83,6 +83,7 @@
 
         .property {
             width: 380px;
+            flex-shrink: 0;
             background: white;
             border-radius: 18px;
             border: 1px solid #e5e7eb;
@@ -768,6 +769,12 @@
   border: 1px solid #d1d5db;
   font-weight: 600;
 }
+
+#rackFrontPreview svg {
+    width: 100%;
+    height: auto;
+    max-height: 620px;
+}
     </style>
 </head>
 
@@ -905,7 +912,6 @@
             </div>
         
           </div>
-        </div>
         <div class="property">
     
           <div class="rack-summary">
@@ -933,7 +939,6 @@
     </div>
 
 </div>
-            </div>
 </div>
 
 <script>
